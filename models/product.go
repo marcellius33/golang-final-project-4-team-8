@@ -9,7 +9,7 @@ import "time"
 type Product struct {
 	ID         uint   `json:"id" gorm:"primaryKey;type:integer"`
 	Title      string `json:"title" gorm:"type:varchar(255);not null"`
-	Price      uint   `json:"price" gorm:"type:integer;not null;check: price > 0;check: price < 50000000"`
+	Price      uint   `json:"price" gorm:"type:integer;not null;check: price > 0 and price < 50000000"`
 	Stock      uint   `json:"stock" gorm:"type:integer;not null;check: stock > 5"`
 	CategoryID uint   `json:"category_id"`
 	Category   Category
