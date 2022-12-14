@@ -41,5 +41,10 @@ func main() {
 	userController := controllers.NewUserController(userService)
 	routers.InitUserRoutes(Routes, userController)
 
+	categoryRepository := repositories.NewCategoryRepository(database.GetDB())
+	categoryService := services.NewCategoryService(categoryRepository)
+	categoryController := controllers.NewCategoryController(categoryService)
+	routers.InitCategoryRoutes(Routes, categoryController)
+
 	Routes.Run(os.Getenv("SERVER_PORT"))
 }

@@ -10,4 +10,5 @@ type Category struct {
 	SoldProductAmount uint      `json:"sold_product_amount" gorm:"type:integer"`
 	CreatedAt         time.Time `json:"created_at"`
 	UpdatedAt         time.Time `json:"updated_at"`
+	Products          []Product `json:"Products"`
 }
