@@ -2,6 +2,8 @@
 
 ## Link Deploy API
 
+https://golang-final-project-4-team-8-production.up.railway.app
+
 ## Link Postman Documentation
 
 ## Anggota
