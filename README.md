@@ -46,6 +46,10 @@ password: admin123
 
 ## Users
 
+- `POST` - `/users/register`. Digunakan untuk registrasi pengguna
+- `POST` - `/users/login`. Digunakan untuk login pengguna
+- `PATCH` - `/users/topup`. Digunakan untuk topup balance pengguna
+
 ## Categories
 
 ## Products
