@@ -19,16 +19,16 @@ func init() {
 
 func handleArgs() {
 	flag.Parse()
-	args := flag.Args()
+	//args := flag.Args()
 
-	if len(args) >= 1 {
-		switch args[0] {
-		case "seeder":
-			userRepository := repositories.NewUserRepository(database.GetDB())
-			userSeed := seed.NewUserSeeder(userRepository)
-			userSeed.Execute()
-		}
-	}
+	//if len(args) >= 1 {
+	//	switch args[0] {
+	//	case "seeder":
+	userRepository := repositories.NewUserRepository(database.GetDB())
+	userSeed := seed.NewUserSeeder(userRepository)
+	userSeed.Execute()
+	//}
+	//}
 }
 
 func main() {
