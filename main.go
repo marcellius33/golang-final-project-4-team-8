@@ -53,7 +53,7 @@ func main() {
 	routers.InitProductRoutes(Routes, productController)
 
 	transactionHistoryRepository := repositories.NewTransactionHistoryRepository(database.GetDB())
-	transactionHistoryService := services.NewTransactionHistoryService(transactionHistoryRepository, productRepository, userRepository)
+	transactionHistoryService := services.NewTransactionHistoryService(transactionHistoryRepository, categoryRepository, productRepository, userRepository)
 	transactionHistoryController := controllers.NewTransactionHistoryController(transactionHistoryService)
 	routers.InitTransactionHistoryRoutes(Routes, transactionHistoryController)
 

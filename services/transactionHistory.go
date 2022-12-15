@@ -16,17 +16,20 @@ type TransactionHistoryService interface {
 
 type transactionHistoryService struct {
 	repository repositories.TransactionHistoryRepository
+	categoryRepo repositories.CategoryRepository
 	productRepo repositories.ProductRepository
 	userRepo repositories.UserRepository
 }
 
 func NewTransactionHistoryService(
 	repository repositories.TransactionHistoryRepository,
+	categoryRepo repositories.CategoryRepository,
 	productRepo repositories.ProductRepository,
 	userRepo repositories.UserRepository,
 	) TransactionHistoryService {
 	return &transactionHistoryService{
 		repository: repository,
+		categoryRepo: categoryRepo,
 		productRepo: productRepo,
 		userRepo: userRepo,
 	}
@@ -73,6 +76,14 @@ func (c transactionHistoryService) CreateTransactionHistory(userId uint, createT
 
 	user.Balance = user.Balance-newTransactionHistory.TotalPrice
 	_, err = c.userRepo.UpdateUser(userId, user)
+	if err != nil {
+		return &params.CreateTransactionHistoryResponse{}, err
+	}
+
+	newCategory := models.Category{
+		SoldProductAmount: newTransactionHistory.Quantity,
+	}
+	_, err = c.categoryRepo.UpdateCategory(product.CategoryID, &newCategory)
 	if err != nil {
 		return &params.CreateTransactionHistoryResponse{}, err
 	}
