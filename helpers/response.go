@@ -10,6 +10,7 @@ type Response struct {
 	Status  int         `json:"status"`
 	Message string      `json:"message"`
 	Payload interface{} `json:"payload,omitempty"`
+	Transaction interface{} `json:"transaction_bill,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 }
 
@@ -77,5 +78,13 @@ func DeleteSuccess(message string) *Response {
 	return &Response{
 		Status:  http.StatusOK,
 		Message: message,
+	}
+}
+
+func SuccessCreateTransactionHistoryResponse(transaction interface{}, message string) *Response {
+	return &Response{
+		Status:  http.StatusCreated,
+		Message: message,
+		Transaction: transaction,
 	}
 }

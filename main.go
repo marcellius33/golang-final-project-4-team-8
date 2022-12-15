@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"github.com/gin-gonic/gin"
 	"os"
 	"tokobelanja/controllers"
 	"tokobelanja/database"
@@ -11,6 +10,8 @@ import (
 	"tokobelanja/repositories"
 	"tokobelanja/routers"
 	"tokobelanja/services"
+
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -45,6 +46,16 @@ func main() {
 	categoryService := services.NewCategoryService(categoryRepository)
 	categoryController := controllers.NewCategoryController(categoryService)
 	routers.InitCategoryRoutes(Routes, categoryController)
+
+	productRepository := repositories.NewProductRepository(database.GetDB())
+	productService := services.NewProductService(productRepository, categoryRepository)
+	productController := controllers.NewProductController(productService)
+	routers.InitProductRoutes(Routes, productController)
+
+	transactionHistoryRepository := repositories.NewTransactionHistoryRepository(database.GetDB())
+	transactionHistoryService := services.NewTransactionHistoryService(transactionHistoryRepository, productRepository, userRepository)
+	transactionHistoryController := controllers.NewTransactionHistoryController(transactionHistoryService)
+	routers.InitTransactionHistoryRoutes(Routes, transactionHistoryController)
 
 	Routes.Run(os.Getenv("SERVER_PORT"))
 }
