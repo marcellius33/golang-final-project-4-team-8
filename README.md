@@ -6,6 +6,8 @@ https://golang-final-project-4-team-8-production.up.railway.app
 
 ## Link Postman Documentation
 
+https://documenter.getpostman.com/view/21171989/2s8YzXtzBq
+
 ## Anggota
 
 1. Mochamad Suhri Ainur Rifky (GLNG-KS04-001)
